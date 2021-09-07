@@ -1,44 +1,54 @@
-﻿using SocialBrothersAPIDemo.Models;
+﻿using Microsoft.Data.Sqlite;
+using SocialBrothersAPIDemo.Database;
+using SocialBrothersAPIDemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace SocialBrothersAPIDemo.Repositories
 {
     public class AdresRepository : IAdresRepository
     {
-        private readonly List<Adres> adressen = new()
-        {
-            new Adres { AdresId = Guid.NewGuid(), Huisnummer = "11a", Plaats = "Zevenaar", Land = "Nederland", Postcode = "6901 AR", Straat = "Nieuwe Doelenstraat" },
-            new Adres { AdresId = Guid.NewGuid(), Huisnummer = "63a", Plaats = "Drachten", Land = "Nederland", Postcode = "9203 ZW", Straat = "Moleneind Zuidzijde" },
-            new Adres { AdresId = Guid.NewGuid(), Huisnummer = "121", Plaats = "Alkmaar", Land = "Nederland", Postcode = "1823 CN", Straat = "Oosterweezenstraat" }
-        };
-
         public void CreateAdres(Adres adres)
         {
-            adressen.Add(adres);
+            using (DataContext context = new DataContext())
+            {
+                context.Adressen.Add(adres);
+                context.SaveChanges();
+            };
         }
-
+        
         public void DeleteAdres(Guid id)
         {
-            var index = adressen.FindIndex(existingAdres => existingAdres.AdresId == id);
-            adressen.RemoveAt(index);
+            using (DataContext context = new DataContext())
+            {
+                context.Adressen.Remove(GetAdres(id));
+                context.SaveChanges();
+            };
         }
 
         public IEnumerable<Adres> GetAdres()
         {
-            return adressen;
+            using (DataContext context = new DataContext())
+            {
+                var data = context.Adressen.ToList();
+                return data;
+            }    
         }
         public Adres GetAdres(Guid AdresId)
         {
-            return adressen.Where(adres => adres.AdresId == AdresId).SingleOrDefault();
+            return GetAdres().Where(adres => adres.AdresId == AdresId).SingleOrDefault();
         }
 
         public void UpdateAdres(Adres adres)
         {
-            var index = adressen.FindIndex(existingAdres => existingAdres.AdresId == adres.AdresId);
-            adressen[index] = adres;
+            using (DataContext context = new DataContext())
+            {
+                context.Adressen.Update(adres);
+                context.SaveChanges();
+            }
         }
     }
 }
