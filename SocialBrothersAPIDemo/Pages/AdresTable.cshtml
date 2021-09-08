@@ -1,0 +1,29 @@
+﻿@page
+@{
+    ViewData["Title"] = "Display Data";
+
+}
+
+<h2> @ViewData["Title"].</h2>
+
+<div class="table">
+    <table>
+        <thead>
+            <tr>Id</tr>
+            <tr>Straat</tr>
+            <tr>Huisnummer</tr>
+            <tr>Postcode</tr>
+            <tr>Plaats</tr>
+            <tr>Land</tr>
+        </thead>
+        <tbody>
+            <td>Model.AdresId</td>
+            <td>Model.Straat</td>
+            <td>Model.Huisnummer</td>
+            <td>Model.Postcode</td>
+            <td>Model.Plaats</td>
+            <td>Model.Land</td>
+        </tbody>
+    </table>
+    
+</div>
