@@ -56,6 +56,7 @@ namespace SocialBrothersAPIDemo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
 
             app.UseSwagger();

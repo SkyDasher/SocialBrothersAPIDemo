@@ -14,7 +14,6 @@ namespace SocialBrothersAPIDemo.Controllers
     public class AdresController : ControllerBase
     {
         private readonly IAdresRepository repository;
-
         public AdresController(IAdresRepository repository)
         {
             this.repository = repository;
@@ -27,7 +26,7 @@ namespace SocialBrothersAPIDemo.Controllers
             return adressen;
         }
         [HttpGet("{AdresId}")]
-        public ActionResult<AdresDto> getAdres(Guid AdresId)
+        public ActionResult<AdresDto> GetAdres(Guid AdresId)
         {
             var adres = repository.GetAdres(AdresId);
 
