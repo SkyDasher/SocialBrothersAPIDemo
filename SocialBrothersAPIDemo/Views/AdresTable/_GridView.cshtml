@@ -1,12 +1,13 @@
 ﻿@model List<SocialBrothersAPIDemo.Models.Adres>
 <table>
     <thead>
-    <th>Adres Id</th>
-    <th>Straat</th>
-    <th>Huisnummer</th>
-    <th>PostCode</th>
-    <th>Plaats</th>
-    <th>Land</th>
+        <th><button id="sortButton">AdresId</button></th>
+        <th><button id="sortButton">Straat</button></th>
+        <th><button id="sortButton">Huisnummer</button></th>
+        <th><button id="sortButton">PostCode</button></th>
+        <th><button id="sortButton">Plaats</button></th>
+        <th><button id="sortButton">Land</button></th>
+        <div id="srtbtn"></div>
     </thead>
     @foreach (var adres in Model)
     {
@@ -20,3 +21,30 @@
     </tr>
     }
 </table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(() => {
+
+        $('#sortButton').on('click', () => {
+            sortTable()
+        });
+    });
+
+    function sortTable() {
+        $.ajax({
+            url: '@Url.Action("ButtonSort", "AdresTable")',
+            dataType: 'html',
+            method: 'GET',
+            data: { searchText: $('#sortButton').val() },
+            success: function (res) {
+                $('#srtbtn').html('').html(res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+
+        })
+    }
+
+</script>
