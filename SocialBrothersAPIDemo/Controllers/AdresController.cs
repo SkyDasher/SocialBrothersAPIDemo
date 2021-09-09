@@ -5,16 +5,15 @@ using SocialBrothersAPIDemo.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SocialBrothersAPIDemo.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AdresController : ControllerBase
+    public class AdresController : Controller
     {
         private readonly IAdresRepository repository;
-
+        
         public AdresController(IAdresRepository repository)
         {
             this.repository = repository;
@@ -27,7 +26,7 @@ namespace SocialBrothersAPIDemo.Controllers
             return adressen;
         }
         [HttpGet("{AdresId}")]
-        public ActionResult<AdresDto> getAdres(Guid AdresId)
+        public ActionResult<AdresDto> GetAdres(Guid AdresId)
         {
             var adres = repository.GetAdres(AdresId);
 

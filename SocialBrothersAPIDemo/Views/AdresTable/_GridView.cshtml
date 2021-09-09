@@ -1,0 +1,22 @@
+﻿@model List<SocialBrothersAPIDemo.Models.Adres>
+<table>
+    <thead>
+    <th>Adres Id</th>
+    <th>Straat</th>
+    <th>Huisnummer</th>
+    <th>PostCode</th>
+    <th>Plaats</th>
+    <th>Land</th>
+    </thead>
+    @foreach (var adres in Model)
+    {
+    <tr>
+        <td>@adres.AdresId</td>
+        <td>@adres.Straat</td>
+        <td>@adres.Huisnummer</td>
+        <td>@adres.Postcode</td>
+        <td>@adres.Plaats</td>
+        <td>@adres.Land</td>
+    </tr>
+    }
+</table>

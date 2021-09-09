@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 using SocialBrothersAPIDemo.Database;
 using SocialBrothersAPIDemo.Models;
 using System;
@@ -11,7 +12,7 @@ namespace SocialBrothersAPIDemo.Repositories
 {
     public class AdresRepository : IAdresRepository
     {
-        public void CreateAdres(Adres adres)
+        public void CreateAdres(Adres adres) 
         {
             using (DataContext context = new DataContext())
             {
